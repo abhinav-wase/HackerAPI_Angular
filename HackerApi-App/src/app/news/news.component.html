@@ -1,0 +1,15 @@
+<div>
+    <h2>Newest Stories</h2>
+    <input type="text" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Search...">
+    <ul>
+      <li *ngFor="let title of filteredStories">
+        <a [href]= "title.url" target="_blank"> {{title.title}}         </a>
+      </li>
+    </ul>
+    <!-- Pagination -->
+  <div>
+    <button *ngIf="currentPage > 1" (click)="onPageChange(currentPage - 1)">Previous</button>
+    Page {{ currentPage }}
+    <button (click)="onPageChange(currentPage + 1)">Next</button>
+  </div>
+  </div>
