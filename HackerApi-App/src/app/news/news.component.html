@@ -1,15 +1,30 @@
+<!-- news.component.html -->
+
 <div>
-    <h2>Newest Stories</h2>
-    <input type="text" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Search...">
-    <ul>
-      <li *ngFor="let title of filteredStories">
-        <a [href]= "title.url" target="_blank"> {{title.title}}         </a>
-      </li>
-    </ul>
-    <!-- Pagination -->
+  <h2>Newest Stories</h2>
+  
+  <!-- Search input for filtering stories -->
+  <input type="text" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Search...">
+
+  <!-- Table view for displaying stories -->
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Iterate over paginated stories and display in table rows -->
+      <tr *ngFor="let story of filteredStories">
+        <td><a [href]="story.url" target="_blank">{{ story.title }}</a></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- Pagination controls -->
   <div>
     <button *ngIf="currentPage > 1" (click)="onPageChange(currentPage - 1)">Previous</button>
     Page {{ currentPage }}
     <button (click)="onPageChange(currentPage + 1)">Next</button>
   </div>
-  </div>
+</div>
